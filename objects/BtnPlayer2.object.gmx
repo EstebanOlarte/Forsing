@@ -65,7 +65,7 @@ Manager = BtnChooseManager;
           <argument>
             <kind>1</kind>
             <string>/// Set a pressed
-if(keyboard_check_pressed(ord("N")))
+if(keyboard_check_pressed(ord("K")))
 {
     Manager.Player2 = Index;
     Interactable = false;
@@ -94,18 +94,21 @@ if(keyboard_check_pressed(ord("N")))
           <argument>
             <kind>1</kind>
             <string>/// Change Character
+
 if(Interactable and Player1.Interactable)
 {
-    if(keyboard_check_pressed(ord("J")) and Index &gt; 0)
+    if(keyboard_check_pressed(vk_left) or  keyboard_check_pressed(vk_right))
     {
-        Index --;
-        sprite_index = Sprites[Index];
-
-    }
-    if(keyboard_check_pressed(ord("L")) and Index &lt; 1)
-    {
-        Index ++;
-        sprite_index = Sprites[Index];
+        if (Index = 1)
+            {
+            Index -=1;
+            sprite_index = Sprites[Index];
+            }
+        else
+        {
+            Index +=1;
+            sprite_index = Sprites[Index];
+        }
     }
 }
 
@@ -130,7 +133,7 @@ if(Interactable and Player1.Interactable)
           <argument>
             <kind>1</kind>
             <string>///Decision remove
-if(keyboard_check_pressed(ord("M")))
+if(keyboard_check_pressed(ord("L")))
 {
     Interactable = true;
     Manager.Player2 = 1;

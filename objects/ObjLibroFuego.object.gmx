@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>-1</persistent>
+  <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,36 +25,45 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Instance var´s
+            <string>///vars
 
-Teclado = true;
-
-yMin = 248;
-yMax = 448;
-
-Name = "";
-Player = 2;
-
-Z = y - yMin;
-Y = 0;
-
-Jump = false;
-
-MaxJumpForce = 30;
-Gravity = 5;
-
-LastY = y + sprite_height/2;
-
-R = 1;
-ZInitial = Z - R;
-ZFinal = Z + R;
+Ataques[0] = 0;
+   
+a=false;
+b=false;
+c=false;
+d=false;
+e=false;
 
 
-// Animations
-Animations[3] = 0;
-// Book
-Book = 0 ;
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Back to animation
+
+ObjPlayer1.OA = false;
+
+LastSrite = 0;
 </string>
           </argument>
         </arguments>
@@ -77,88 +86,17 @@ Book = 0 ;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Move
+            <string>///Puño
 
-if(!Jump)
-{
-    Z = y - yMin ;
-}
-if(Teclado)
-{
-    Up = keyboard_check(vk_up);
-    Down = keyboard_check(vk_down);
-    Left = keyboard_check(vk_left);
-    Right = keyboard_check(vk_right);
-}
-// x
-if(Right - Left != 0)
-{
-    if(Right)
+
+if a == true
     {
-        image_xscale = 1;
+    ObjPlayer1.OA = true;
+    
+    ObjPlayer1.sprite_index = Ataques[0];
+    alarm[0] = 2;
+    a = false;
     }
-    else if (Left)
-    {
-        image_xscale = -1;
-    }
-    if(!Jump)
-    {
-        sprite_index = Animations[1];
-    }   
-}
-else if(!Jump and 
-(!Up and !Down))
-{ 
-    sprite_index = Animations[0];
-}
-
-if x&gt;(view_xview[0]+32) 
-{
-x += -Left * 7;
-}
-
-if x&lt;(view_xview[0]+567)
-{
-x += Right*7;
-}
-
-// y 
-if(Up and Z &gt; 0 and !Down )
-{ 
-    if(Jump)
-    {
-        Z -= 5;
-    }
-    y -= 5;
-    if(!Jump)
-    {
-        sprite_index = Animations[1]
-    }
-}
-if(Down and Z &lt; 150 and !Up)
-{   
-    if(Jump)
-    {
-        Z += 5;
-    }
-    y += 5;
-     if(!Jump)
-    {
-        sprite_index = Animations[1]
-    }    
-}
-if((Up and Down) and (Right - Left == 0) and  !Jump )
-{
-    sprite_index = Animations[0]
-}
-
-//Depth
-depth=-Z
-
-
-
-
-
 </string>
           </argument>
         </arguments>
@@ -179,40 +117,18 @@ depth=-Z
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Jump
+            <string>///Deteccion de sprites
 
-if(Teclado)
-{
-    Space = keyboard_check_pressed(ord("J"));
-}
-if(vspeed == MaxJumpForce)
-{
-    vspeed = 0;
-    Jump = false;
-    sprite_index = Animations[0];   
-}
-
-if(Jump)
-{
-    if(y + sprite_height/2 &lt; LastY)
+if (ObjPlayer1.Name == "Charlie")
     {
-    // Up
-        Y ++;
+    Ataques[0]= SprCharlieGolpe;
     }
-    else if(y + sprite_height/2 &gt; LastY)
+
+if (ObjPlayer1.Name == "Milena")
     {
-    // Down
-        Y --;      
-    }   
-    vspeed += Gravity;
-    LastY = y + sprite_height/2; 
-}
-if(Space and !Jump)
-{
-    vspeed -= MaxJumpForce;
-    Jump = true; 
-    sprite_index = Animations[2];
-}
+    Ataques[0]= SprCharlieGolpe;
+    }
+
 </string>
           </argument>
         </arguments>

@@ -29,6 +29,7 @@
 
 Teclado = true;
 
+OA = false;
 Name = "";
 Player = 1;
 
@@ -52,7 +53,7 @@ ZFinal = Z + R;
 // Animations
 Animations[3] = 0;
 // Book
-Book = 0 ;
+Book = ObjLibroFuego;
 </string>
           </argument>
         </arguments>
@@ -99,7 +100,7 @@ if(Right - Left != 0)
     {
         image_xscale = -1;
     }
-    if(!Jump)
+    if(!Jump) and (!OA)
     {
         sprite_index = Animations[1];
     }   
@@ -107,7 +108,10 @@ if(Right - Left != 0)
 else if(!Jump and 
 (!Up and !Down))
 { 
-    sprite_index = Animations[0];
+    if(!OA)
+    {
+        sprite_index = Animations[0];
+    }
 }
 if x&gt;(view_xview[0]+32) 
 {
@@ -127,7 +131,7 @@ if(Up and Z &gt; 0 and !Down )
         Z -= 5;
     }
     y -= 5;
-    if(!Jump and Z &gt; 0)
+    if(!Jump and Z &gt; 0) and (!OA)
     {
         sprite_index = Animations[1]
     }
@@ -139,14 +143,17 @@ if(Down and Z &lt; 150 and !Up)
         Z += 5;
     }
     y += 5;
-     if(!Jump and Z &lt; 150)
+     if(!Jump and Z &lt; 150) and (!OA)
     {
         sprite_index = Animations[1]
     }  
 }
 if((Up and Down) and (Right - Left == 0) and  !Jump )
 {
+    if(!OA)
+    {
     sprite_index = Animations[0]
+    }
 }
 
 // Depth
@@ -176,14 +183,18 @@ depth=-Z
             <string>/// Jump
 if(Teclado)
 {
-    Space = keyboard_check_pressed(vk_space);
+    Space = keyboard_check_pressed(ord("1"));
 }
 
 if(vspeed == MaxJumpForce)
 {
+
     vspeed = 0;
     Jump = false;
-    sprite_index = Animations[0];   
+if (!OA)
+    {
+    sprite_index = Animations[0];
+    }   
 }
 
 if(Jump)
@@ -204,8 +215,37 @@ if(Jump)
 if(Space and !Jump)
 {
     vspeed -= MaxJumpForce;
-    Jump = true; 
+    Jump = true;
+if (!OA)
+    { 
     sprite_index = Animations[2];
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// A
+if(keyboard_check_pressed(ord("2")))
+{
+    Book.a = true;
+    show_debug_message(OA);
 }
 </string>
           </argument>

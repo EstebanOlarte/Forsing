@@ -7,6 +7,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\SprCharlie</sprite>
+    <sprite>sprites\SprCharlieGolpe</sprite>
     <sprite>sprites\SprCharlieWalk</sprite>
     <sprite>sprites\SprCharlieJump</sprite>
     <sprite>sprites\SprCircleShadow</sprite>
@@ -23,6 +24,7 @@
   <paths name="paths"/>
   <objects name="objects">
     <objects name="Forest">
+      <object>objects\ObjLibroFuego</object>
       <object>objects\ObjForestController</object>
       <object>objects\ObjPlayer1</object>
       <object>objects\ObjPlayer1Shadow</object>

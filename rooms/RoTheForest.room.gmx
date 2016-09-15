@@ -57,6 +57,7 @@
     <instance objName="ObjPlayer2Shadow" x="128" y="320" name="inst_6CBFC905" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ObjForestController" x="0" y="0" name="inst_39B55F36" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ObjView" x="256" y="320" name="inst_F474D270" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ObjLibroFuego" x="32" y="0" name="inst_718D5323" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
