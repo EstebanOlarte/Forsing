@@ -7,31 +7,25 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\SprCharlie</sprite>
-    <sprite>sprites\SprCharlieGolpe</sprite>
     <sprite>sprites\SprCharlieWalk</sprite>
     <sprite>sprites\SprCharlieJump</sprite>
+    <sprite>sprites\SprCharlieGolpe</sprite>
     <sprite>sprites\SprCircleShadow</sprite>
     <sprite>sprites\SprMilena</sprite>
     <sprite>sprites\SprMilenaWalk</sprite>
+    <sprite>sprites\SprMIlenaGolpe</sprite>
     <sprite>sprites\SprMilenaJump</sprite>
     <sprite>sprites\SprStart</sprite>
     <sprite>sprites\SprPLayer1</sprite>
     <sprite>sprites\SprPlayer2</sprite>
+    <sprite>sprites\SprPlatform</sprite>
+    <sprite>sprites\SprBoxShadow</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\BaTheForest</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
-    <objects name="Forest">
-      <object>objects\ObjLibroFuego</object>
-      <object>objects\ObjForestController</object>
-      <object>objects\ObjPlayer1</object>
-      <object>objects\ObjPlayer1Shadow</object>
-      <object>objects\ObjPlayer2</object>
-      <object>objects\ObjPlayer2Shadow</object>
-      <object>objects\ObjView</object>
-    </objects>
     <objects name="Menu">
       <objects name="Btn">
         <object>objects\BtnPlayer1</object>
@@ -42,6 +36,23 @@
       <object>objects\ObjMilena</object>
       <object>objects\ObjPLayer1Sprite</object>
       <object>objects\ObjPlayer2Sprite</object>
+    </objects>
+    <objects name="Forest">
+      <object>objects\ObjLibroFuego</object>
+      <object>objects\ObjPlayer1</object>
+      <object>objects\ObjPlayer1Shadow</object>
+      <object>objects\ObjPlayer2</object>
+      <object>objects\ObjPlayer2Shadow</object>
+      <object>objects\ObjView</object>
+      <objects name="Platform01">
+        <object>objects\ObjPlatform01</object>
+        <object>objects\ObjPlatform01Shadow</object>
+      </objects>
+      <objects name="Platform02">
+        <object>objects\ObjPlatform02</object>
+        <object>objects\ObjPlatform02Shadown</object>
+      </objects>
+      <object>objects\ObjBookMapper</object>
     </objects>
   </objects>
   <rooms name="rooms">

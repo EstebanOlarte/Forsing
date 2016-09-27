@@ -28,16 +28,18 @@
             <string>/// Instance var´s
 
 Teclado = true;
-
+Platform [2]= false;
 OA = false;
+
 Name = "";
 Player = 1;
 
-yMin = 248;
-yMax = 448;
+yMin = 160;
+yMax = 320;
 
-Z = y - yMin;
+Z = y - yMin + sprite_height/2;
 Y = 0;
+H = 3 + Y;
 
 Jump = false;
 
@@ -80,7 +82,7 @@ Book = ObjLibroFuego;
 
 if(!Jump)
 {
-    Z = y - yMin ;
+    Z = y - yMin + sprite_height/2 ;
 }
 if(Teclado)
 {
@@ -113,12 +115,12 @@ else if(!Jump and
         sprite_index = Animations[0];
     }
 }
-if x&gt;(view_xview[0]+32) 
+if x &gt; (view_xview[0]+32) 
 {
 x += -Left * 7;
 }
 
-if x&lt;(view_xview[0]+567)
+if x &lt; (view_xview[0]+608)
 {
 x += Right*7;
 }
@@ -136,14 +138,14 @@ if(Up and Z &gt; 0 and !Down )
         sprite_index = Animations[1]
     }
 }
-if(Down and Z &lt; 150 and !Up)
+if(Down and Z &lt; yMin and !Up)
 {   
     if(Jump)
     {
         Z += 5;
     }
     y += 5;
-     if(!Jump and Z &lt; 150) and (!OA)
+     if(!Jump and Z &lt; yMin) and (!OA)
     {
         sprite_index = Animations[1]
     }  
@@ -157,7 +159,7 @@ if((Up and Down) and (Right - Left == 0) and  !Jump )
 }
 
 // Depth
-depth=-Z 
+depth = -Z;
 
 
 </string>
@@ -183,7 +185,7 @@ depth=-Z
             <string>/// Jump
 if(Teclado)
 {
-    Space = keyboard_check_pressed(ord("1"));
+    Space = keyboard_check_pressed(vk_space);
 }
 
 if(vspeed == MaxJumpForce)
@@ -191,6 +193,7 @@ if(vspeed == MaxJumpForce)
 
     vspeed = 0;
     Jump = false;
+    Y --;
 if (!OA)
     {
     sprite_index = Animations[0];
@@ -242,10 +245,65 @@ if (!OA)
           <argument>
             <kind>1</kind>
             <string>/// A
-if(keyboard_check_pressed(ord("2")))
+if(keyboard_check_pressed(ord("Z")))
 {
     Book.a = true;
     show_debug_message(OA);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Platform collision
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Test Button
+if(keyboard_check_pressed(ord("Q")))
+{
+    show_debug_message(Z);
+    show_debug_message(Y);
+    show_debug_message(H);
+    show_debug_message(Name);
+    for(i = 0; i &lt; 2 ; i ++)
+    {
+        show_debug_message(Platform[i]);
+    }
+
 }
 </string>
           </argument>

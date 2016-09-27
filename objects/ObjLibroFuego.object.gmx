@@ -25,10 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///vars
+            <string>///var´s
 
 Ataques[0] = 0;
-   
+
 a=false;
 b=false;
 c=false;
@@ -63,7 +63,6 @@ e=false;
 
 ObjPlayer1.OA = false;
 
-LastSrite = 0;
 </string>
           </argument>
         </arguments>
@@ -88,7 +87,6 @@ LastSrite = 0;
             <kind>1</kind>
             <string>///Puño
 
-
 if a == true
     {
     ObjPlayer1.OA = true;
@@ -97,38 +95,6 @@ if a == true
     alarm[0] = 2;
     a = false;
     }
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Deteccion de sprites
-
-if (ObjPlayer1.Name == "Charlie")
-    {
-    Ataques[0]= SprCharlieGolpe;
-    }
-
-if (ObjPlayer1.Name == "Milena")
-    {
-    Ataques[0]= SprCharlieGolpe;
-    }
-
 </string>
           </argument>
         </arguments>

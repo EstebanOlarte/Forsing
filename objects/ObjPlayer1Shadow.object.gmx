@@ -27,7 +27,9 @@
             <kind>1</kind>
             <string>/// shadow of player
 x = ObjPlayer1.x;
-y = (ObjPlayer1.Z + ObjPlayer1.yMin) + ObjPlayer1.sprite_height/2;
+y = ObjPlayer1.Z + ObjPlayer1.yMin;
+
+
 </string>
           </argument>
         </arguments>

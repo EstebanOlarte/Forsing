@@ -28,15 +28,17 @@
             <string>/// Instance var´s
 
 Teclado = true;
+Platform [2]= false;
 
-yMin = 248;
-yMax = 448;
+yMin = 160;
+yMax = 320 ;
 
 Name = "";
 Player = 2;
 
-Z = y - yMin;
+Z = y - yMin + sprite_height/2;
 Y = 0;
+H = 3 + Y;
 
 Jump = false;
 
@@ -81,7 +83,7 @@ Book = 0 ;
 
 if(!Jump)
 {
-    Z = y - yMin ;
+    Z = y - yMin + sprite_height/2 ;
 }
 if(Teclado)
 {
@@ -117,7 +119,7 @@ if x&gt;(view_xview[0]+32)
 x += -Left * 7;
 }
 
-if x&lt;(view_xview[0]+567)
+if x&lt;(view_xview[0]+608)
 {
 x += Right*7;
 }
@@ -130,19 +132,19 @@ if(Up and Z &gt; 0 and !Down )
         Z -= 5;
     }
     y -= 5;
-    if(!Jump)
+    if(!Jump and  Z &gt; 0)
     {
         sprite_index = Animations[1]
     }
 }
-if(Down and Z &lt; 150 and !Up)
+if(Down and Z &lt; yMin and !Up)
 {   
     if(Jump)
     {
         Z += 5;
     }
     y += 5;
-     if(!Jump)
+     if(!Jump and Z &lt; yMin)
     {
         sprite_index = Animations[1]
     }    
@@ -183,12 +185,13 @@ depth=-Z
 
 if(Teclado)
 {
-    Space = keyboard_check_pressed(ord("J"));
+    Space = keyboard_check_pressed(vk_alt);
 }
 if(vspeed == MaxJumpForce)
 {
     vspeed = 0;
     Jump = false;
+    Y --;
     sprite_index = Animations[0];   
 }
 

@@ -59,6 +59,7 @@ if(!BtnPlayer1.Interactable and
     image_alpha = 1;
     if(keyboard_check_pressed(vk_space))
     {
+        show_debug_message("apretaste space");
         if(Player1 == 0)
         {
             ObjCharlie.Player = "Player1";
@@ -75,7 +76,7 @@ if(!BtnPlayer1.Interactable and
         {
             ObjMilena.Player = "Player2" 
         }
-        room_goto_next();
+        room_goto(RoTheForest);
     }
 }
 else
