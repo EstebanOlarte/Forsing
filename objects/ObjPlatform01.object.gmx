@@ -26,19 +26,27 @@
           <argument>
             <kind>1</kind>
             <string>/// Instance var´s
+Angle = 30;
 
 Shadow = ObjPlatform01Shadow
 
-yMin = 160;
+yMin = 192;
 yMax = 320;
 
-Z = Shadow.y - yMin + 16;
+// si no hay una medida exacta
+QuadrantPartition = 3;
+QuadrantParts = 2; 
+MaskH = QuadrantParts/QuadrantPartition;
+
+
+Z = Shadow.y - yMin + (16 * MaskH);
+
 depth = -Z ;
 Y = 0;
 if(self.y != Shadow.y)
 {
 j = 0;
-    for(i = 30; i &lt;= 30; i-=5)
+    for(i = 30; i &gt;= -50 i-=5)
     {
         j = j + i;
         if(self.y == Shadow.y - j)
@@ -55,9 +63,19 @@ j = 0;
 show_debug_message("soy la plataforma numero 1 y estoy a una altura de: " + string(Y));
 Gravity = 5;
 
-R = 3;
-ZInitial = Z - R;
-ZFinal = Z + R;
+ZInitial = Z - (16 * MaskH ) - (16 * MaskH);
+ZFinal = Z;
+
+xInitial = x - sprite_width/2;
+xFinal = x + sprite_width/2;
+
+// posicion : x
+show_debug_message( "Z: " + string(Z))
+show_debug_message( "ZInitial: " + string(ZInitial))
+show_debug_message( "ZFinal: " + string(ZFinal))
+show_debug_message( "x: " + string(x));
+show_debug_message( "xInitial: " + string(xInitial));
+show_debug_message( "xFinal: " + string(xFinal));
 
 </string>
           </argument>
@@ -81,7 +99,123 @@ ZFinal = Z + R;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///On my property
+            <string>/// Depth Controller Player1
+
+if(ObjPlayer1.H &lt;= Y )
+{
+    ObjPlayer1.PlatformJump = false;
+
+    //On my property Player 1
+
+    ObjPlayer1_xFinal = ObjPlayer1.x + 16;
+
+    if(ObjPlayer1_xFinal &gt;= xInitial &amp;&amp; (ObjPlayer1_xFinal - 32) &lt;= xFinal)
+    {
+        if(ObjPlayer1.Z &gt;= ZInitial &amp;&amp; ObjPlayer1.Z &lt;= ZFinal)
+        {
+            // el player 1 entro a la plataforma numero 1
+        }      
+    }
+
+    // Depth Correction
+
+    DeltaZ = ZFinal - ObjPlayer1.Z;
+    if(DeltaZ &lt; 0)
+    {
+       DeltaZ = 0;
+    }
+    //               Mask_Height
+    //                   |
+    //                   v
+    X = Angle/(16 * MaskH +16 * MaskH);
+    if(ObjPlayer1_xFinal &gt;= xInitial &amp;&amp; ObjPlayer1_xFinal &lt;= xInitial + (Angle - (DeltaZ* X)))
+    {
+        ObjPlayer1.PlayerJump_in_a_Platform = true;
+        ObjPlayer1.depth = -ZFinal -1;
+    }
+    else
+    {
+        ObjPlayer1.PlayerJump_in_a_Platform = false;
+    }
+}
+if(ObjPlayer1.Jump)
+{
+    ObjPlayer1.PlayerJump_in_a_Platform = true;
+    ObjPlayer1.depth = -ZFinal -1;
+}
+
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Depth Controller Player2
+
+if(ObjPlayer2.H &lt;= Y )
+{
+    ObjPlayer2.PlatformJump = false;
+
+    //On my property Player 2
+
+    ObjPlayer2_xFinal = ObjPlayer2.x + 16;
+
+    if(ObjPlayer2_xFinal &gt;= xInitial &amp;&amp; (ObjPlayer2_xFinal - 32) &lt;= xFinal)
+    {
+        if(ObjPlayer2.Z &gt;= ZInitial &amp;&amp; ObjPlayer2.Z &lt;= ZFinal)
+        {
+            // el player 2 entro a la plataforma numero 1
+        }
+       
+    }
+
+    // Depth Correction
+
+    DeltaZ = ZFinal - ObjPlayer2.Z;
+    if(DeltaZ &lt; 0)
+    {
+       DeltaZ = 0;
+    }
+    //               Mask_Height
+    //                   |
+    //                   v
+    X = Angle/(16 * MaskH +16 * MaskH);
+    if(ObjPlayer2_xFinal &gt;= xInitial &amp;&amp; ObjPlayer2_xFinal &lt;= xInitial + (Angle - (DeltaZ* X)))
+    {
+        ObjPlayer2.PlayerJump_in_a_Platform = true;
+        ObjPlayer2.depth = -ZFinal -1;
+    }
+    else
+    {
+        ObjPlayer2.PlayerJump_in_a_Platform = false;
+    }
+}
+if(ObjPlayer2.Jump)
+{
+    ObjPlayer2.PlayerJump_in_a_Platform = true;
+    ObjPlayer2.depth = -ZFinal -1;
+}
+
+
+
 
 
 </string>

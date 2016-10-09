@@ -27,8 +27,7 @@
             <kind>1</kind>
             <string>/// var´s
 
-Name = "LibroFuego";
-A_Sound = SndFirePunch;
+Name = "LibroLuz";
 </string>
           </argument>
         </arguments>

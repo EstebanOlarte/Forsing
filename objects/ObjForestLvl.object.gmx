@@ -25,12 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Books
+            <string>/// var´s
+OnlyOnce = true;
 
-Books [0] = ObjLibroFuego;
-Books [1] = ObjLibroHielo;
-Books [2] = ObjLibroLuz;
-Books [3] = ObjLibroTierra;
+TransitionSpeed = 2;
+Count = 0;
+
+TimetoDown = false;
+ObjView.ViwerController = false;
+
+view_yview[0] = -320;
 </string>
           </argument>
         </arguments>
@@ -53,47 +57,55 @@ Books [3] = ObjLibroTierra;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Book Mapper
+            <string>/// Time to Down
 
-if(keyboard_check_pressed(ord("E")))
+if(TimetoDown)
 {
-    NumberofComponents = array_length_1d(Books) - 1;
-    Book = irandom(NumberofComponents)
-    show_debug_message("al player 1 le toco el libro: " + string(Books[Book].Name))
-    // player 1
-    ObjPlayer1.Book = Books[Book];
-    // Sprites:
-    if (ObjPlayer1.Name == "Charlie" and Book == 0)
+    if(view_yview[0] &lt; 0)
     {
-        ObjPlayer1.Animations[4]= SprCharlieFireGolpe;
+        view_yview[0] += TransitionSpeed;
+        Count ++;
     }
-    else if (ObjPlayer1.Name == "Milena" and Book == 0)
-    {
-        ObjPlayer1.Animations[4]= SprMilenaFireGolpe;
-    }
-       
-    OtherBook = irandom(NumberofComponents)
-    while(OtherBook == Book)
-    {
-        OtherBook = irandom(NumberofComponents)
-    }
-    show_debug_message("al player 2 le toco el libro: " + string(Books[OtherBook].Name))
-    /// player 2
-    ObjPlayer2.Book = Books[OtherBook];
-    // Sprites:
-    if (ObjPlayer2.Name == "Charlie" and OtherBook == 0)
-    {
-        ObjPlayer2.Animations[4]= SprCharlieFireGolpe;
-    }
-    else if (ObjPlayer2.Name == "Milena" and OtherBook == 0)
-    {
-        ObjPlayer2.Animations[4]= SprMilenaFireGolpe;
-    }
+}
+if(Count == (64/TransitionSpeed) and
+   Count != 1)
+{
+    Count = 0 ;
+    TransitionSpeed += TransitionSpeed;
+}
+if(view_yview[0] = 0 and OnlyOnce)
+{
+    OnlyOnce = false;
+    view_object[0] = ObjView;
     
-    ObjPlayer1.Teclado = true;
-    ObjPlayer2.Teclado = true;
-    // auto destroy
-    instance_destroy();
+    ObjView.ViwerController = true;   
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// First Round
+
+if(ObjPlayer1.x &gt;= 960 || 
+   ObjPlayer2.x &gt;= 960)
+{
+    ObjView.ViwerController = false;
 }
 </string>
           </argument>

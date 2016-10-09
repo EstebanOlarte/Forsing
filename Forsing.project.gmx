@@ -4,25 +4,31 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\SndFirePunch</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\SprCharlie</sprite>
     <sprite>sprites\SprCharlieWalk</sprite>
     <sprite>sprites\SprCharlieJump</sprite>
-    <sprite>sprites\SprCharlieGolpe</sprite>
+    <sprite>sprites\SprCharlieFireGolpe</sprite>
     <sprite>sprites\SprCircleShadow</sprite>
     <sprite>sprites\SprMilena</sprite>
     <sprite>sprites\SprMilenaWalk</sprite>
-    <sprite>sprites\SprMIlenaGolpe</sprite>
+    <sprite>sprites\SprMilenaFireGolpe</sprite>
     <sprite>sprites\SprMilenaJump</sprite>
     <sprite>sprites\SprStart</sprite>
     <sprite>sprites\SprPLayer1</sprite>
     <sprite>sprites\SprPlayer2</sprite>
     <sprite>sprites\SprPlatform</sprite>
     <sprite>sprites\SprBoxShadow</sprite>
+    <sprite>sprites\SprCloud</sprite>
+    <sprite>sprites\SprLogo</sprite>
+    <sprite>sprites\SprBooks</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\BaTheForest</background>
+    <background>background\BaTheMoon</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
@@ -39,6 +45,9 @@
     </objects>
     <objects name="Forest">
       <object>objects\ObjLibroFuego</object>
+      <object>objects\ObjLibroHielo</object>
+      <object>objects\ObjLibroLuz</object>
+      <object>objects\ObjLibroTierra</object>
       <object>objects\ObjPlayer1</object>
       <object>objects\ObjPlayer1Shadow</object>
       <object>objects\ObjPlayer2</object>
@@ -53,6 +62,10 @@
         <object>objects\ObjPlatform02Shadown</object>
       </objects>
       <object>objects\ObjBookMapper</object>
+      <object>objects\ObjForestLvl</object>
+      <object>objects\ObjCloud</object>
+      <object>objects\ObjLogo</object>
+      <object>objects\ObjBooks</object>
     </objects>
   </objects>
   <rooms name="rooms">

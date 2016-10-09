@@ -29,10 +29,14 @@
 
 Shadow = ObjPlatform02Shadown
 
-yMin = 160;
+yMin = 192;
 yMax = 320;
+// si no hay una medida exacta
+QuadrantPartition = 3;
+QuadrantParts = 2; 
+MaskH = QuadrantParts/QuadrantPartition; 
 
-Z = Shadow.y - yMin + 16;
+Z = Shadow.y - yMin + ( 16 * MaskH );
 depth = -Z
 
 Y = 0;
@@ -56,9 +60,18 @@ j = 0;
 show_debug_message("soy la plataforma numero 2 y estoy a una altura de: " + string(Y));
 Gravity = 5;
 
-R = 3;
+R = 8;
 ZInitial = Z - R;
 ZFinal = Z + R;
+
+xInitial = x - sprite_width/2;
+xFinal = x + sprite_width/2;
+
+// posicion : x
+show_debug_message( "Z: " + string(Z))
+show_debug_message( "x: " + string(x));
+show_debug_message( "xInitial: " + string(xInitial));
+show_debug_message( "xFinal: " + string(xFinal));
 
 </string>
           </argument>

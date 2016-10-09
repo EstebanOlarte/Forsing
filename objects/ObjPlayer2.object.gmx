@@ -27,18 +27,25 @@
             <kind>1</kind>
             <string>/// Instance var´s
 
-Teclado = true;
-Platform [2]= false;
+Teclado = false;
+Up = 0;
+Down = 0;
+Left = 0;
+Right = 0;
+Space = 0;
 
-yMin = 160;
-yMax = 320 ;
+PlayerJump_in_a_Platform = false;
+OA = false;
 
 Name = "";
-Player = 2;
+Player = 1;
+
+yMin = 192;
+yMax = 320;
 
 Z = y - yMin + sprite_height/2;
 Y = 0;
-H = 3 + Y;
+H = 2 + Y;
 
 Jump = false;
 
@@ -51,11 +58,44 @@ R = 1;
 ZInitial = Z - R;
 ZFinal = Z + R;
 
-
 // Animations
 Animations[3] = 0;
 // Book
-Book = 0 ;
+Book = 0;
+
+//Atributos
+Vida = 3;
+BarradeVida = 100;
+Mana = 100;
+Expo = 0;
+Limit = 100;
+EsenciasMagicas = 0;
+Nivel = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Back to animation
+
+ObjPlayer2.OA = false;
 
 </string>
           </argument>
@@ -87,10 +127,10 @@ if(!Jump)
 }
 if(Teclado)
 {
-    Up = keyboard_check(vk_up);
-    Down = keyboard_check(vk_down);
-    Left = keyboard_check(vk_left);
-    Right = keyboard_check(vk_right);
+    Up = keyboard_check(ord("I"));
+    Down = keyboard_check(ord("K"));
+    Left = keyboard_check(ord("J"));
+    Right = keyboard_check(ord("L"));
 }
 // x
 if(Right - Left != 0)
@@ -103,7 +143,7 @@ if(Right - Left != 0)
     {
         image_xscale = -1;
     }
-    if(!Jump)
+    if(!Jump) and (!OA)
     {
         sprite_index = Animations[1];
     }   
@@ -111,54 +151,68 @@ if(Right - Left != 0)
 else if(!Jump and 
 (!Up and !Down))
 { 
-    sprite_index = Animations[0];
+    if(!OA)
+    {
+        sprite_index = Animations[0];
+    }
+}
+if x &gt; (view_xview[0]+32) 
+{
+    x += -Left * 7;
 }
 
-if x&gt;(view_xview[0]+32) 
+if x &lt; (view_xview[0]+608)
 {
-x += -Left * 7;
-}
-
-if x&lt;(view_xview[0]+608)
-{
-x += Right*7;
+    x += Right*7;
 }
 
 // y 
 if(Up and Z &gt; 0 and !Down )
 { 
+    MoveSpeed = 5;
+    if(Z - 5 &lt; 0)
+    {
+        MoveSpeed = 1;
+    }
     if(Jump)
     {
-        Z -= 5;
+        Z -= MoveSpeed;
     }
-    y -= 5;
-    if(!Jump and  Z &gt; 0)
+    y -= MoveSpeed;
+    if(!Jump and Z &gt; 0) and (!OA)
     {
         sprite_index = Animations[1]
     }
 }
-if(Down and Z &lt; yMin and !Up)
-{   
+if(Down and Z &lt; 128 and !Up)
+{    MoveSpeed = 5;
+    if(Z + 5 &gt; 128)
+    {
+        MoveSpeed = 1;
+    }
     if(Jump)
     {
-        Z += 5;
+        Z += MoveSpeed;
     }
-    y += 5;
-     if(!Jump and Z &lt; yMin)
+    y += MoveSpeed;
+     if(!Jump and Z &lt; yMin) and (!OA)
     {
         sprite_index = Animations[1]
-    }    
+    }  
 }
 if((Up and Down) and (Right - Left == 0) and  !Jump )
 {
+    if(!OA)
+    {
     sprite_index = Animations[0]
+    }
 }
 
-//Depth
-depth=-Z
-
-
-
+// Depth
+if(PlayerJump_in_a_Platform == false)
+{
+    depth = -Z;
+}
 
 
 </string>
@@ -182,17 +236,22 @@ depth=-Z
           <argument>
             <kind>1</kind>
             <string>/// Jump
-
 if(Teclado)
 {
     Space = keyboard_check_pressed(vk_alt);
 }
+H = Y + 2;
+
 if(vspeed == MaxJumpForce)
 {
+
     vspeed = 0;
     Jump = false;
-    Y --;
-    sprite_index = Animations[0];   
+    Y--;   
+if (!OA)
+    {
+    sprite_index = Animations[0];
+    }   
 }
 
 if(Jump)
@@ -211,10 +270,44 @@ if(Jump)
     LastY = y + sprite_height/2; 
 }
 if(Space and !Jump)
-{
+{   LastY = y + sprite_height/2;
     vspeed -= MaxJumpForce;
-    Jump = true; 
+    Jump = true;
+if (!OA)
+    { 
     sprite_index = Animations[2];
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// A
+if(keyboard_check_pressed(ord("N")) and !keyboard_check(vk_up))
+{
+    if(Book != 0)
+    {
+        OA = true;
+        sprite_index = Animations[4];
+        audio_play_sound(Book.A_Sound, 10, false);
+        alarm[0] = 2;       
+    }
 }
 </string>
           </argument>
